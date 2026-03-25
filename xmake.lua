@@ -45,3 +45,21 @@ target("StancesNG")
     add_includedirs("src")
     add_includedirs("extern/clib-util/include", { public = true })
     set_pcxxheader("src/pch.h")
+
+    -- copy build files (dll and pdb) to distr folder
+    after_build(function (target)
+
+        local dist_root = path.join(os.projectdir(), "distr")
+        local release_root = path.join(os.projectdir(), "upload")
+        local plugins = path.join(release_root, "SKSE", "Plugins")
+
+        os.rm(release_root)
+        os.mkdir(plugins)
+
+        os.trycp(target:targetfile(), plugins)
+        os.trycp(target:symbolfile(), plugins)
+
+        if os.isdir(dist_root) then
+            os.trycp(path.join(dist_root, "*"), plugins)
+        end
+    end)

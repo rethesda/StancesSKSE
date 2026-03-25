@@ -5,8 +5,11 @@
 .idea/
 
 # folders
+upload/
 build/
 vs*/
 
 # files
 *.zip
+*.dll
+*.pdb

@@ -31,15 +31,21 @@ namespace STNG
                 {
                     DrawIdleSelection();
                 }
+                if (FUCK::Button("Reset Settings"))
+                {
+                    RestoreDefaultSettings();
+                }
                 FUCK::EndTabBar();
             }
         }
 
+
+
+    private:
         void DrawHotkeySelector();
         void DrawBoolManipulation();
         void DrawIdleSelection();
-
-    private:
+        void RestoreDefaultSettings();
         void RebuildFilteredIdles();
         static FUCK::ManagedHotkey KeyStringToManagedHotkey(std::string_view a_str);
         static std::string ManagedHotkeyToKeyString(const FUCK::ManagedHotkey& a_hotkey);

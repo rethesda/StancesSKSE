@@ -1,0 +1,14 @@
+[Keybinds]
+sNeutralStanceKey = "alt+v"
+sBearStanceKey = "shift+x"
+sWolfStanceKey = "x"
+sHawkStanceKey = "ctrl+x"
+
+[General]
+bUseCycling = false
+bApplyStanceOnStart = false
+bPlayTransitionAnimation = false
+
+[Forms]
+sTransitionAnimationForm = ""
+

@@ -1,0 +1,36 @@
+name: Stances NG
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Setup Xmake
+        uses: xmake-io/github-action-setup-xmake@v1
+        with:
+          xmake-version: latest
+          package-cache: true
+          actions-cache-folder: '.xmake-cache'
+          package-cache-key: windows-ci
+
+      - name: Build Stances NG
+        run: |
+          xmake f -p windows -a x64 -m releasedbg --rex_toml=true -y
+          xmake
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: StancesNG
+          path: upload/

@@ -113,6 +113,27 @@ namespace STNG
 
     }
 
+    void StanceTool::RestoreDefaultSettings()
+    {
+        using s = Config::Settings;
+        use_cycling = false;
+        s::use_cycling.SetValue(false);
+        apply_on_start = false;
+        s::apply_stance_on_start.SetValue(false);
+        play_animation = false;
+        s::play_transition_animation.SetValue(false);
+        _bearKey = KeyStringToManagedHotkey("shift+x");
+        s::bear_stance_key.SetValue("shift+x");
+        _wolfKey = KeyStringToManagedHotkey("x");
+        s::wolf_stance_key.SetValue("x");
+        _hawkKey = KeyStringToManagedHotkey("control+x");
+        s::hawk_stance_key.SetValue("control+x");
+        _neutralKey = KeyStringToManagedHotkey("alt+v");
+        s::neutral_stance_key.SetValue("alt+v");
+        _selectedIdle = nullptr;
+        s::transition_animation_form.SetValue("");
+    }
+
     void StanceTool::RebuildFilteredIdles()
     {
         _filteredIdles.clear();
