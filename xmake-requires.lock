@@ -12,8 +12,11 @@
         ["directxtk#f56260b5"] = {
             version = "24.2.0"
         },
+        ["imgui#f56260b5"] = {
+            version = "v1.92.5"
+        },
         ["ninja#f56260b5"] = {
-            version = "1.12.1"
+            version = "1.13.2"
         },
         ["rapidcsv#f56260b5"] = {
             version = "v8.90"

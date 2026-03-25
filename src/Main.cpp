@@ -1,5 +1,6 @@
 #include "Cache.h"
 #include "formloader.h"
+#include "ingame-menu.h"
 #include "inputmanager.h"
 #include "MenuEventManager.h"
 #include "Settings.h"
@@ -16,6 +17,10 @@ void Listener(SKSE::MessagingInterface::Message* message) noexcept
     case SKSE::MessagingInterface::kDataLoaded:
         STNG::FormLoader::LoadForms();
         MenuEvent::Register();
+        STNG::RegisterFUCKMenu();
+
+
+
 #ifdef GENERATE_CONFIG_FILE
         Config::Settings::use_cycling.SetValue(true);
         Config::Settings::UpdateSettings(true);

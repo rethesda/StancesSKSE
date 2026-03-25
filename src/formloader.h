@@ -2,6 +2,8 @@
 // Created by styyx on 04/03/2026.
 //
 #pragma once
+#include <unordered_set>
+
 #include "mod-data.h"
 #include "Settings.h"
 #include "utils.h"
@@ -19,6 +21,7 @@ namespace STNG
         static inline RE::TESIdleForm* transition_animation;
 
         static inline std::vector<RE::SpellItem*> stance_spells;
+        static inline std::vector<RE::TESIdleForm*> all_game_idles;
 
         static void PopulateStanceSpellVector()
         {
@@ -31,6 +34,21 @@ namespace STNG
         static bool AreGameFormsValid()
         {
             return bear_stance_spell && wolf_stance_spell && hawk_stance_spell && previous_stance_global && current_stance_global;
+        }
+
+        static void BuildFormVector()
+        {
+            const auto formList = RE::TESForm::GetAllForms().first;
+            for (auto it = formList->begin(); it != formList->end(); ++it) {
+
+                if (const auto form = it->second)
+                {
+                    if (const auto idle = form->As<RE::TESIdleForm>())
+                    {
+                        all_game_idles.push_back(idle);
+                    }
+                }
+            }
         }
 
         static bool LoadFormFromConfig(){
@@ -63,6 +81,8 @@ namespace STNG
             {
                 logs::info("Loaded form from config");
             }
-        };
+            BuildFormVector();
+            logs::info("loaded {} idles into vector", all_game_idles.size());
+        }
     };
 }

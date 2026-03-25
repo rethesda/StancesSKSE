@@ -37,18 +37,21 @@ void STNG::InputEventListener::SetKeys()
 
 void STNG::InputEventListener::ProcessStanceKey(const KeyCombination* key)
 {
-    for(auto& [hotkey, stance] : GetSingleton()->keySpellCombo)
-    {
-        if (key == &GetSingleton()->hotkey_wolf && key->IsTriggered())
-        {
-            if (StanceManager::CycleStancesPlayer())
-                return;
-        }
+    if (!key->IsTriggered())
+        return;
 
-        if (key == hotkey && key->IsTriggered())
+    const auto stanceMan = GetSingleton();
+    if (key == &stanceMan->hotkey_wolf)
+    {
+        if (StanceManager::CycleStancesPlayer())
+            return;
+    }
+    for(auto& [hotkey, stance] : stanceMan->keySpellCombo)
+    {
+        if (key == hotkey)
         {
             StanceManager::UpdateStancePlayer(stance);
-            break;
+            return;
         }
     }
 }

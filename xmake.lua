@@ -24,12 +24,14 @@ add_rules("plugin.vsxmake.autoupdate")
 
 -- configs
 set_config("rex_toml", true)
+add_requires("imgui", {public = true})
 
 -- targets
 target("StancesNG")
     -- add dependencies to target
     add_deps("commonlibsse-ng")
     add_deps("clib-util")
+    add_packages("imgui")
     -- add commonlibsse-ng plugin
     add_rules("commonlibsse-ng.plugin", {
         name = "StancesNG",

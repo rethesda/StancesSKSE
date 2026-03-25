@@ -13,7 +13,7 @@ namespace Cache
 
     inline RE::PlayerCharacter* GetPlayerSingleton()
     {
-        REL::Relocation<RE::NiPointer<RE::PlayerCharacter>*> singleton{ PlayerSingletonAddress };
+        const REL::Relocation<RE::NiPointer<RE::PlayerCharacter>*> singleton{ PlayerSingletonAddress };
         return singleton->get();
     }
 

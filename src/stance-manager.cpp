@@ -49,6 +49,8 @@ namespace STNG
 
     void StanceManager::PlayTransitionAnimation(RE::Actor* a_actor)
     {
+        if (!Config::Settings::play_transition_animation.GetValue())
+            return;
         if (!a_actor)
             return;
         const auto proc = a_actor->GetActorRuntimeData().currentProcess;
